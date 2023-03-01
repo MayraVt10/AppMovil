@@ -1,4 +1,4 @@
-import 'package:app_movil1/src/listado.dart';
+import 'package:app_movil1/src/pages/listado.dart';
 import 'package:flutter/material.dart';
 
 class loginPage extends StatefulWidget {
@@ -88,15 +88,7 @@ class _loginPageState extends State<loginPage> {
         ),
         onPressed: () {
           print('Hola');
-          initialRoute:
-          listadoPage.nombrePagina;
-          routes:
-          {
-            listadoPage.nombrePagina;
-            (BuildContext context) => listadoPage();
-          }
-          ;
-          //home : listadoPage()
+          Navigator.pushNamed(context, listadoPage.nombrePagina);
         },
       );
     });

@@ -1,6 +1,8 @@
+import 'package:app_movil1/src/pages/formulario.dart';
+import 'package:app_movil1/src/pages/listado.dart';
 import 'package:flutter/material.dart';
 
-import 'login_page.dart'
+import 'login_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -20,6 +22,8 @@ class MyApp extends StatelessWidget {
       initialRoute: loginPage.id,
       routes: {
         loginPage.id: (context) => loginPage(),
+        listadoPage.nombrePagina: (context) => listadoPage(),
+        formularioPage.nombrePagina: (context) => formularioPage(),
       },
     );
   }
