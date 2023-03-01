@@ -1,3 +1,4 @@
+import 'package:app_movil1/src/pages/detalle.dart';
 import 'package:app_movil1/src/pages/formulario.dart';
 import 'package:app_movil1/src/pages/listado.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
         loginPage.id: (context) => loginPage(),
         listadoPage.nombrePagina: (context) => listadoPage(),
         formularioPage.nombrePagina: (context) => formularioPage(),
+        DetallePage.nombrePagina: (context) => DetallePage(),
       },
     );
   }

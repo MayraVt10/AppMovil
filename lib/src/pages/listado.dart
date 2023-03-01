@@ -1,3 +1,4 @@
+import 'package:app_movil1/src/pages/detalle.dart';
 import 'package:app_movil1/src/pages/formulario.dart';
 import 'package:app_movil1/src/providers/tareas_provider.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,7 @@ class listadoPage extends StatelessWidget {
           title: Text('LISTADO'),
         ),
         body: (TareasProvider().tareas.isNotEmpty)
-            ? ListView(children: _crearItem())
+            ? ListView(children: _crearItem(context))
             : Center(
                 child: Text('No hay tareas'),
               ),
@@ -32,19 +33,19 @@ class listadoPage extends StatelessWidget {
         ));
   }
 
-  List<Widget> _crearItem() {
+  List<Widget> _crearItem(BuildContext context) {
     List<Widget> temporal = [];
     for (Map<String, dynamic> tarea in TareasProvider().tareas) {
       Widget item = ListTile(
-        title: Text("${tarea['nombre']}"),
-        subtitle: Text("${tarea['estado']}"),
-        trailing: (tarea['estado'] == 'pendiente'
-            ? Icon(Icons.star)
-            : Icon(Icons.star_border)),
-        leading: Icon(Icons.account_balance_wallet),
-        //trailing: Icon(Icons.keyboard_arrow_right),
-        onTap: () {},
-      );
+          title: Text("${tarea['nombre']}"),
+          subtitle: Text("${tarea['fecha']} \n ${tarea['estado']}"),
+          trailing: (tarea['estado'] == 'pendiente'
+              ? Icon(Icons.star)
+              : Icon(Icons.star_border)),
+          leading: Icon(Icons.account_balance_wallet),
+          //trailing: Icon(Icons.keyboard_arrow_right),
+          onTap: () => Navigator.pushNamed(context, DetallePage.nombrePagina,
+              arguments: tarea));
 
       temporal.add(item);
     }

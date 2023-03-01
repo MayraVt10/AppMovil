@@ -7,12 +7,15 @@ class formularioPage extends StatefulWidget {
   _formularioPageState createState() => _formularioPageState();
 }
 
+Map<String, dynamic> tarea = {};
+
 class _formularioPageState extends State<formularioPage> {
   final idForm = GlobalKey<FormState>();
 
   Map<String, dynamic> nuevaTarea = {};
   @override
   Widget build(BuildContext context) {
+    tarea = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
     return Scaffold(
       appBar: AppBar(
         title: Text('FORMULARIO'),
@@ -37,6 +40,7 @@ class _formularioPageState extends State<formularioPage> {
 
   _crearInputNombre() {
     return TextFormField(
+      initialValue: tarea['nombre'],
       onSaved: (value) {
         nuevaTarea['nombre'] = value;
       },
@@ -51,6 +55,7 @@ class _formularioPageState extends State<formularioPage> {
     return Container(
       margin: EdgeInsets.only(top: 30.0),
       child: TextFormField(
+        initialValue: tarea['fecha'],
         onSaved: (value) {
           nuevaTarea['fecha'] = value;
         },
