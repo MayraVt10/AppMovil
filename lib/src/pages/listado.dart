@@ -3,7 +3,7 @@ import 'package:app_movil1/src/pages/formulario.dart';
 import 'package:app_movil1/src/providers/tareas_provider.dart';
 import 'package:flutter/material.dart';
 
-class listadoPage extends StatelessWidget {
+class listadoPage extends StatefulWidget {
   const listadoPage({super.key});
 
   static final nombrePagina = "listado";
@@ -15,6 +15,11 @@ class listadoPage extends StatelessWidget {
     }
   ];
 
+  @override
+  State<listadoPage> createState() => _listadoPageState();
+}
+
+class _listadoPageState extends State<listadoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

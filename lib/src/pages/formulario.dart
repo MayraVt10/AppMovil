@@ -1,3 +1,4 @@
+import 'package:app_movil1/src/pages/listado.dart';
 import 'package:app_movil1/src/providers/tareas_provider.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +16,7 @@ class _formularioPageState extends State<formularioPage> {
   Map<String, dynamic> nuevaTarea = {};
   @override
   Widget build(BuildContext context) {
-    tarea = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    tarea = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
     return Scaffold(
       appBar: AppBar(
         title: Text('FORMULARIO'),
@@ -40,7 +41,7 @@ class _formularioPageState extends State<formularioPage> {
 
   _crearInputNombre() {
     return TextFormField(
-      initialValue: tarea['nombre'],
+      initialValue: (tarea != null) ? tarea['nombre'] : "",
       onSaved: (value) {
         nuevaTarea['nombre'] = value;
       },
@@ -55,7 +56,7 @@ class _formularioPageState extends State<formularioPage> {
     return Container(
       margin: EdgeInsets.only(top: 30.0),
       child: TextFormField(
-        initialValue: tarea['fecha'],
+        initialValue: (tarea != null) ? tarea['fecha'] : "",
         onSaved: (value) {
           nuevaTarea['fecha'] = value;
         },
@@ -75,11 +76,17 @@ class _formularioPageState extends State<formularioPage> {
         onPressed: () {
           idForm.currentState!.save();
           nuevaTarea['estado'] = 'pendiente';
-          TareasProvider().agregarTarea(nuevaTarea);
 
-          Navigator.pop(context);
+          if (tarea != null) {
+            TareasProvider().editarTarea(nuevaTarea, tarea);
+            Navigator.popUntil(
+                context, ModalRoute.withName(listadoPage.nombrePagina));
+          } else {
+            TareasProvider().agregarTarea(nuevaTarea);
+            Navigator.pop(context);
+          }
         },
-        child: Text('Guardar'),
+        child: (tarea != null) ? Text("EDITAR TAREA") : Text('CREAR TAREA'),
       ),
     );
   }

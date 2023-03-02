@@ -1,4 +1,6 @@
 import 'package:app_movil1/src/pages/formulario.dart';
+import 'package:app_movil1/src/pages/listado.dart';
+import 'package:app_movil1/src/providers/tareas_provider.dart';
 import 'package:flutter/material.dart';
 
 class DetallePage extends StatelessWidget {
@@ -29,7 +31,10 @@ class DetallePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  TareasProvider().terminarTarea(tarea['id']);
+                  Navigator.pushNamed(context, listadoPage.nombrePagina);
+                },
                 style: ButtonStyle(
                   backgroundColor:
                       MaterialStateProperty.all<Color>(Colors.green),
@@ -47,7 +52,10 @@ class DetallePage extends StatelessWidget {
                 child: Text("EDITAR"),
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  TareasProvider().eliminarTarea(tarea['id']);
+                  Navigator.pushNamed(context, listadoPage.nombrePagina);
+                },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
                 ),
